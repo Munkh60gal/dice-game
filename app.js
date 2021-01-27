@@ -13,25 +13,30 @@ var scores = [0, 0];
 var roundScore = 0;
 
 // Shoonii ali talaaraa buusniig hadgalah huvisagch heregtei. 1-6 gsn utgiig ene huivsagchid sanamsarguigeer uusgej ugnu.
-
-var dice = Math.floor( Math.random() * 6 ) + 1;
-
-// <div class="player-score" id="score-0">43</div>
-// window.document.querySelector("#score-0").textContent = dice;
-
-// document.querySelector("#score-1").innerHTML = "<em>Yes!<em>";    // Window bol globol object fuknts dotor gadna bugded ni haragddag uchraas zaaval window. gej bichih albagui zugeer shuud bichihed bolno.
+// var diceNumber = Math.floor( Math.random() * 6 ) + 1;  // Ene hesgiig door Roll dice deer ashiglasan.
 
 
 // Programm ehlehed beltgey :
 // Toglogchiin tsuguulj baigaa onoog 00lov
-document.querySelector("#score-0").textContent = 0;  
-document.querySelector("#score-1").textContent = 0;
+
+document.getElementById("score-0").textContent = 0;  
+document.getElementById("score-1").textContent = 0;
 
 // Toglogchiin odoo idevhtei baigaa onoog 00lov
-document.querySelector("#current-0").textContent = 0;
-document.querySelector("#current-1").textContent = 0;
+document.getElementById("current-0").textContent = 0;
+document.getElementById("current-1").textContent = 0;
 
 // Shoog baihgui bolgov
-document.querySelector(".dice").style.display = "none";
+var diceDom = document.querySelector(".dice");
+diceDom.style.display = "none";
 
-console.log("Shoo: " + dice);
+// Roll dice tovch
+document.querySelector(".btn-roll").addEventListener("click", function()
+    {
+         // Үүсгэж байгаа санамсаргүй тоо нь өөрөө 1-6 хооронд байгаа бас файлын нэрийг албаар dice-X-png гэж нэрлэсэн зэрэг аргуудыг харах юм бол нөхцөл шалгах шаардлагггүй шууд буусан шооны тоог Х тооны оронд тавьж өгөөд шооны зураг үүсээд байгаа юм.   
+        var diceNumber = Math.floor( Math.random() * 6 ) + 1;  
+        diceDom.style.display = "block";
+        diceDom.src = "dice-" + diceNumber + ".png";
+    }
+);
+
