@@ -4,7 +4,11 @@
 // Lesson 44 Hold tovchiig ajilaladag bolgon onoog tsugluulah
 // Lesson 45 New game heseg
 
-//Togloomiin buh gazar aashiglagdah global huvisagchdiig end zarlay
+// Togloomiin buh gazar aashiglagdah global huvisagchdiig end zarlay
+ 
+// Togloom duussan esehiig hadgalah tuluviin huvisagch
+var isNewGame;
+
 
 var activePlayer;   // Ali toglogch shoo shideh ve gedgiig end hadgalna
 
@@ -20,6 +24,9 @@ initGame();
 // Togloomiig shineer ehlehed beltgene.
 function initGame()
 {
+    // Togloom ehellee gedeg tuluvt oruulna.
+    isNewGame = true;
+
     // Toglogchiin eeljiig hadgalah huvisagch, negdugeer toglogchiig 0, hoyrdugaar toglogchiig 1 gej temdegley
     activePlayer = 0;
 
@@ -64,7 +71,9 @@ function initGame()
 document.querySelector(".btn-roll").addEventListener("click", function() 
 
 {
-    // 1-6 dotorh sanamsargui neg toog gargaj avna 
+    if (isNewGame === true)       
+    {
+        // 1-6 dotorh sanamsargui neg toog gargaj avna 
     // Үүсгэж байгаа санамсаргүй тоо нь өөрөө 1-6 хооронд байгаа бас файлын нэрийг албаар dice-X-png гэж нэрлэсэн зэрэг аргуудыг харах юм бол нөхцөл шалгах шаардлагггүй шууд буусан шооны тоог Х тооны оронд тавьж өгөөд шооны зураг үүсээд байгаа юм.   
     var diceNumber = Math.floor( Math.random() * 6 ) + 1;  
 
@@ -111,6 +120,11 @@ document.querySelector(".btn-roll").addEventListener("click", function()
         // Shoog tur alga bolgono.
         diceDom.style.display = "none";
     }
+    }
+    else
+    {
+        alert("Togloom duussan baina. NEW GAME tovchiig darj shineer ehlene uu.")
+    }
 });
 
 
@@ -118,40 +132,49 @@ document.querySelector(".btn-roll").addEventListener("click", function()
 
 document.querySelector(".btn-hold").addEventListener("click", function() 
 {
-    // Ug toglogchiin tsugluusan eeljnii onoog global onoon deer ni nemj ugnu.
+   if(isNewGame === true) 
+   {
+        // Ug toglogchiin tsugluusan eeljnii onoog global onoon deer ni nemj ugnu.
 
 
-    // if(activePlayer === 0)
-    // {
-    //     scores[0] = scores[0] + roundScore;
-    // }
-    // else
-    // {
-    //     scores[1] = scores[1] + roundScore;
-    // }
+        // if(activePlayer === 0)
+        // {
+        //     scores[0] = scores[0] + roundScore;
+        // }
+        // else
+        // {
+        //     scores[1] = scores[1] + roundScore;
+        // }
 
-    // Deerh nuhstul shalgah uildliig ingej hyalbarchilj bolno.
-    scores[activePlayer] =  scores[activePlayer] + roundScore;
+        // Deerh nuhstul shalgah uildliig ingej hyalbarchilj bolno.
+        scores[activePlayer] =  scores[activePlayer] + roundScore;
 
-     // Delgets deer onoog ni uurchulnu
-     document.getElementById("score-" + activePlayer).textContent = scores[activePlayer];
+        // Delgets deer onoog ni uurchulnu
+        document.getElementById("score-" + activePlayer).textContent = scores[activePlayer];
 
-    // Ug toglogch hojson esehiig (onoo ni 100-aas ih eseh) shalgah 
-    if(scores[activePlayer] >= 10)
-    {
-        // Yalagch gesen textiig nerniih ni orond gargana.
-        document.getElementById("name-" + activePlayer).textContent = "WINNER!!!"
-        document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner")
+        // Ug toglogch hojson esehiig (onoo ni 100-aas ih eseh) shalgah 
+        if(scores[activePlayer] >= 10)
+        {
+            // Togloomiig duussan tuluvt oruulna
+            isNewGame = false;
 
-        // Yalsnii daraa ulaan tsegiig baihguu bolgoh
-        document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active")
-    }
-    else
-    {
-        // Toglogchiin eeljiig solino
-        switchToNextPlayer();
-    }
-    
+            // Yalagch gesen textiig nerniih ni orond gargana.
+            document.getElementById("name-" + activePlayer).textContent = "WINNER!!!"
+            document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner")
+
+            // Yalsnii daraa ulaan tsegiig baihguu bolgoh
+            document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active")
+        }
+        else
+        {
+            // Toglogchiin eeljiig solino
+            switchToNextPlayer();
+        }        
+   }
+   else
+   {
+       alert("Togloom duussan baina. NEW GAME tovchiig darj shineer ehlene uu.")
+   }
 });
 
 
