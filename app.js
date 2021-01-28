@@ -1,38 +1,64 @@
 // Lessen 41 DOM ruu handav 
 // Lesson 42 Event, callback, anonymous function
 // Lesson 43 Onoog uurchilj toglogchiin eelj solih
-// Lesson 44 DRY Onoog tsugluulah
+// Lesson 44 Hold tovchiig ajilaladag bolgon onoog tsugluulah
 // Lesson 45 New game heseg
 
-// Toglogchiin eeljiig hadgalah huvisagch, negdugeer toglogchiig 0, hoyrdugaar toglogchiig 1 gej temdegley
+//Togloomiin buh gazar aashiglagdah global huvisagchdiig end zarlay
 
-var activePlayer = 0;
+var activePlayer;   // Ali toglogch shoo shideh ve gedgiig end hadgalna
 
-// Toglogchdiin tsugluulsan onoog hadgalah huvisagch
+var scores;         // Hoyr toglogchiin tsugluulsan onoonuud
 
-var scores = [0, 0];
+var roundScore;       // Idevhtei toglogchiin tsugluulj baigaa eeljiin onoo
 
-// Toglogchiin eeljin deer tsugluulj bga onoog hadgalah huvisagch
+var diceDom = document.querySelector(".dice");    // Shoonii zurgiig uzuuleh elementiig DOM_oos haij olood end hadgalay (Global huvisagch)
 
-var roundScore = 0;
+// Togloomiig ehluulne
+initGame();
 
-// Shoonii ali talaaraa buusniig hadgalah huvisagch heregtei. 1-6 gsn utgiig ene huivsagchid sanamsarguigeer uusgej ugnu.
-// var diceNumber = Math.floor( Math.random() * 6 ) + 1;  // Ene hesgiig door Roll dice deer ashiglasan.
+// Togloomiig shineer ehlehed beltgene.
+function initGame()
+{
+    // Toglogchiin eeljiig hadgalah huvisagch, negdugeer toglogchiig 0, hoyrdugaar toglogchiig 1 gej temdegley
+    activePlayer = 0;
+
+    // Toglogchdiin tsugluulsan onoog hadgalah huvisagch
+    scores = [0, 0];
+
+    // Toglogchiin eeljin deer tsugluulj bga onoog hadgalah huvisagch
+    roundScore = 0;
+
+    // Shoonii ali talaaraa buusniig hadgalah huvisagch heregtei. 1-6 gsn utgiig ene huivsagchid sanamsarguigeer uusgej ugnu.
+    // var diceNumber = Math.floor( Math.random() * 6 ) + 1;  // Ene hesgiig doorr Roll dice deer ashiglasan.
 
 
-// Programm ehlehed beltgey :
-// Toglogchiin tsuguulj baigaa onoog 00lov
+    // Programm ehlehed beltgey :
+    // Toglogchiin tsuguulj baigaa onoog 00lov
+    document.getElementById("score-0").textContent = 0;  
+    document.getElementById("score-1").textContent = 0;
 
-document.getElementById("score-0").textContent = 0;  
-document.getElementById("score-1").textContent = 0;
+    // Toglogchiin odoo idevhtei baigaa onoog 00lov
+    document.getElementById("current-0").textContent = 0;
+    document.getElementById("current-1").textContent = 0;
 
-// Toglogchiin odoo idevhtei baigaa onoog 00lov
-document.getElementById("current-0").textContent = 0;
-document.getElementById("current-1").textContent = 0;
+    // Toglogchdiin neriig butsaaj gargah
+    document.getElementById("name-0").textContent = "Player 1"
+    document.getElementById("name-1").textContent = "Player 2"
 
-// Shoog baihgui bolgov
-var diceDom = document.querySelector(".dice");
-diceDom.style.display = "none";
+    // New game darsnii daraa yalsan toglogchiin winneriig arilgaj player bolgoh
+    document.querySelector(".player-0-panel").classList.remove("winner");
+    document.querySelector(".player-1-panel").classList.remove("winner");
+
+    document.querySelector(".player-0-panel").classList.remove("active");
+    document.querySelector(".player-1-panel").classList.remove("active");
+
+    document.querySelector(".player-0-panel").classList.add("active");
+
+    // Shoog baihgui bolgono
+    diceDom.style.display = "none";
+}
+
 
 // Shoog shideh event listener
 document.querySelector(".btn-roll").addEventListener("click", function() 
@@ -94,6 +120,7 @@ document.querySelector(".btn-hold").addEventListener("click", function()
 {
     // Ug toglogchiin tsugluusan eeljnii onoog global onoon deer ni nemj ugnu.
 
+
     // if(activePlayer === 0)
     // {
     //     scores[0] = scores[0] + roundScore;
@@ -102,7 +129,6 @@ document.querySelector(".btn-hold").addEventListener("click", function()
     // {
     //     scores[1] = scores[1] + roundScore;
     // }
-
 
     // Deerh nuhstul shalgah uildliig ingej hyalbarchilj bolno.
     scores[activePlayer] =  scores[activePlayer] + roundScore;
@@ -150,9 +176,7 @@ function  switchToNextPlayer()
 }
 
 
-// Shine togloom ehluuleh tovchnii event listener
+// New Game buyu Shine togloom ehluuleh tovchnii event listener
 
-document.querySelector(".btn-new").addEventListener("click" , function() 
-{
-    alert("clicked")
-})
+document.querySelector(".btn-new").addEventListener("click" , initGame);
+
