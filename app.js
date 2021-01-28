@@ -123,7 +123,7 @@ document.querySelector(".btn-roll").addEventListener("click", function()
     }
     else
     {
-        alert("Togloom duussan baina. NEW GAME tovchiig darj shineer ehlene uu.")
+        alert("Тоглоом дууссан байна. NEW GAME товчыг дарж шинээр эхэлнэ үү.")
     }
 });
 
@@ -173,7 +173,7 @@ document.querySelector(".btn-hold").addEventListener("click", function()
    }
    else
    {
-       alert("Togloom duussan baina. NEW GAME tovchiig darj shineer ehlene uu.")
+       alert("Тоглоом дууссан байна. NEW GAME товчыг дарж шинээр эхэлнэ үү.")
    }
 });
 
